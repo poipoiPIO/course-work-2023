@@ -1,6 +1,6 @@
 from sqladmin import ModelView
 
-from db.models import *
+from db.models import Campus, Room, Client, ClientInfo
 
 class FullAdminBase(ModelView):
     can_create = True

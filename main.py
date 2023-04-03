@@ -4,7 +4,7 @@ from sqladmin import Admin
 import uvicorn
 
 from settings import settings
-from db.setup import db_engine, Base
+from db.setup import db_engine
 from admin import CampusAdmin, RoomAdmin, ClientAdmin, ClientInfoAdmin 
 
 app = FastAPI()
@@ -27,5 +27,4 @@ admin.add_view(ClientAdmin)
 admin.add_view(ClientInfoAdmin)
 
 if __name__ == "__main__":
-    Base.metadata.create_all(db_engine) # create tables
     uvicorn.run(app, host="localhost", port=settings.serve_port)

@@ -1,3 +1,5 @@
+#! env/bin/python3
+
 from fastapi import FastAPI
 from sqladmin import Admin
 
@@ -6,6 +8,7 @@ import uvicorn
 from settings import settings
 from db.setup import db_engine
 from admin import CampusAdmin, RoomAdmin, ClientAdmin, ClientInfoAdmin 
+from router import router
 
 app = FastAPI()
 admin = Admin(app, db_engine)
@@ -18,7 +21,7 @@ async def startup():
 async def shutdown():
     pass
 
-# app.include_router(_) # TODO : ADD ROUTER
+app.include_router(router)
 
 # __ Admin Views __
 admin.add_view(CampusAdmin)

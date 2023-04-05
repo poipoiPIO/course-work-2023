@@ -7,11 +7,13 @@ import uvicorn
 
 from settings import settings
 from db.setup import db_engine
-from admin import CampusAdmin, RoomAdmin, ClientAdmin, ClientInfoAdmin 
+from admin.models import CampusAdmin, RoomAdmin, ClientAdmin, ClientInfoAdmin 
+from admin.auth import AdminAuth 
 from router import router
 
 app = FastAPI()
-admin = Admin(app, db_engine)
+admin = Admin(app, db_engine, authentication_backend=AdminAuth(
+    secret_key=settings.admin_passwd))
 
 @app.on_event("startup")
 async def startup():

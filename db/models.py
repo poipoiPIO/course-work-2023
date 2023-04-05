@@ -67,3 +67,15 @@ class ClientInfo(Base):
         return "<ClientInfo: id: {}, registered: {}, checkout: {}>".format(
             self.id, self.registration_date, self.checkout_date
         )
+
+class AppAdmin(Base):
+    __tablename__ = "admins"
+
+    id = Column(Integer, primary_key=True, index=True)
+    login = Column(String, nullable=False)
+    hashed_passwd = Column(String, nullable=False)
+
+    def __repr__(self) -> str:
+        return "<AppAdmin: id: {}, login: {}, password hash: {}>".format(
+            self.id, self.login, self.hashed_passwd
+        )
